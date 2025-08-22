@@ -33,7 +33,4 @@ public class LoginPage extends AbstractComponent{
     public String getErrorContent() {
         return alertContent.getText();
     }
-
-
-
 }

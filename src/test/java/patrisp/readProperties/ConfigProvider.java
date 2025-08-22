@@ -4,7 +4,6 @@ import com.typesafe.config.Config;
 import com.typesafe.config.ConfigFactory;
 
 public interface ConfigProvider {
-//    Config config = readConfig();
 
     static Config readConfig() {
         return ConfigFactory.systemProperties().hasPath("testProfile")
@@ -13,7 +12,7 @@ public interface ConfigProvider {
     }
 
     String URL = readConfig().getString("url");
-    String ADMIN_LOGIN = readConfig().getString("userCredentials.login");
-    String ADMIN_PASSWORD = readConfig().getString("userCredentials.password");
+    String LOGIN = readConfig().getString("userCredentials.login");
+    String PASSWORD = readConfig().getString("userCredentials.password");
     String BROWSER = readConfig().getString("browser");
 }
