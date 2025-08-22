@@ -17,7 +17,7 @@ public class LogInTest extends BaseTest {
 
     @Test
     public void logInCorrectCredentials() {
-        loginPage.logIn(ConfigProvider.ADMIN_LOGIN, ConfigProvider.ADMIN_PASSWORD);
+        loginPage.logIn(ConfigProvider.LOGIN, ConfigProvider.PASSWORD);
         wait.until(ExpectedConditions.urlContains("dashboard/index"));
         Assert.assertTrue(driver.getCurrentUrl().contains("dashboard/index"),
                 "Expected to be redirected to the dashboard");
@@ -25,7 +25,7 @@ public class LogInTest extends BaseTest {
 
     @Test
     public void logInWrongCredentials() {
-        loginPage.logIn(ConfigProvider.ADMIN_LOGIN + "123", ConfigProvider.ADMIN_PASSWORD + "123");
+        loginPage.logIn(ConfigProvider.LOGIN + "123", ConfigProvider.PASSWORD + "123");
         Assert.assertEquals(loginPage.getErrorContent(), "Invalid credentials", "Expected an 'Invalid credentials' error message");
     }
 }
