@@ -16,7 +16,7 @@ import java.net.URISyntaxException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class AddCandidate extends BaseTest {
+public class AddCandidateTest extends BaseTest {
     private PageProvider pages;
     private CandidateData candidate;
     private AdminData admin;
