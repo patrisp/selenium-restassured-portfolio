@@ -20,8 +20,6 @@ public class AddCandidateTest extends BaseTest {
     private PageProvider pages;
     private CandidateData candidate;
     private AdminData admin;
-    private String candidateFullName;
-    private String adminFullName;
     private String activityDate;
     private static final String DATE_FORMAT = "yyyy-dd-MM";
 
@@ -31,22 +29,18 @@ public class AddCandidateTest extends BaseTest {
 
         // Admin setup
         admin = new AdminData();
-        adminFullName = String.join(" ", admin.firstName, admin.middleName, admin.lastName);
         EmployeesRequests request = new EmployeesRequests();
         EmployeePersonalDetails requestBody = new EmployeePersonalDetails(admin);
         request.updateUserDetails("7", requestBody);
 
         // Candidate setup
         candidate = new CandidateData();
-        candidateFullName = String.join(" ", candidate.firstName, candidate.middleName, candidate.lastName);
         activityDate = DateTimeUtils.formatDate(String.valueOf(LocalDate.now()), DATE_FORMAT);
     }
 
     @Test
     public void addNewCandidate() throws URISyntaxException {
         CandidateData candidate = new CandidateData();
-        String candidateFullName = candidate.firstName + " " + candidate.middleName + " " + candidate.lastName;
-        String adminFullName = admin.firstName + " " + admin.middleName + " " + admin.lastName;
         String activityDate = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-dd-MM"));
 
         pages.dashboard().goToModule("Recruitment");
@@ -69,7 +63,7 @@ public class AddCandidateTest extends BaseTest {
         softAssert.assertEquals(pages.candidate().getToastMessageTitle(), "Success");
         softAssert.assertEquals(pages.candidate().getToastMessageContent(), "Successfully Saved");
         // Candidate card validation
-        softAssert.assertEquals(pages.candidate().getCandidateFullName(), candidateFullName);
+        softAssert.assertEquals(pages.candidate().getCandidateFullName(), candidate.getCandidateFullName());
         softAssert.assertEquals(pages.candidate().getVacancyDetails(), candidate.vacancyName);
         softAssert.assertEquals(pages.candidate().getHiringManagerName(), candidate.hiringManager);
         softAssert.assertEquals(pages.candidate().getApplicationStatus(), "Status: Application Initiated");
@@ -88,7 +82,7 @@ public class AddCandidateTest extends BaseTest {
         softAssert.assertEquals(pages.candidate().getActivityDate(0), activityDate);
         softAssert.assertEquals(pages.candidate().getActivityDate(1), activityDate);
         softAssert.assertTrue(pages.candidate().getActivityContent(0).contains("assigned the job vacancy " + candidate.vacancyName));
-        softAssert.assertTrue(pages.candidate().getActivityContent(1).contains(adminFullName + " added " + candidateFullName));
+        softAssert.assertTrue(pages.candidate().getActivityContent(1).contains(admin.getAdminFullName() + " added " + candidate.getCandidateFullName()));
 
         softAssert.assertAll();
     }

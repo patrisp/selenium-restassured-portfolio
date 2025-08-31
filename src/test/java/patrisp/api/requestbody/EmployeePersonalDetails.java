@@ -3,20 +3,20 @@ package patrisp.api.requestbody;
 import patrisp.testdata.AdminData;
 
 public class EmployeePersonalDetails {
-    public String lastName;
-    public String firstName;
-    public String middleName;
-    public String employeeId;
-    public String otherId;
-    public String drivingLicenseNo;
-    public String drivingLicenseExpiredDate;
-    public Integer gender;
-    public String maritalStatus;
-    public String birthday;
-    public Integer nationalityId;
-    public String nickname;
-    public Boolean smoker;
-    public String militaryService;
+    private String lastName;
+    private String firstName;
+    private String middleName;
+    private String employeeId;
+    private String otherId;
+    private String drivingLicenseNo;
+    private String drivingLicenseExpiredDate;
+    private Integer gender;
+    private String maritalStatus;
+    private String birthday;
+    private Integer nationalityId;
+    private String nickname;
+    private Boolean smoker;
+    private String militaryService;
 
     public EmployeePersonalDetails(AdminData admin) {
         this.lastName = admin.lastName;
