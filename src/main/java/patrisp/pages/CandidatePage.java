@@ -54,7 +54,8 @@ public class CandidatePage extends AbstractComponent<CandidatePage>{
     @FindBy(xpath = "(//div[@class=\"oxd-table-card\"])//div[@role=\"cell\"][2]/div")
     private List<WebElement> activityLogActionCell;
 
-
+    @FindBy(xpath = "//div[@class=\"orangehrm-recruitment-actions\"]/button[contains(@class, \"oxd-button--danger\")]")
+    private WebElement rejectButton;
 
     public CandidatePage(WebDriver driver) {
         super(driver);
@@ -181,5 +182,10 @@ public class CandidatePage extends AbstractComponent<CandidatePage>{
 
     public String getActivityContent(int index) {
         return activityLogActionCell.get(index).getText();
+    }
+
+    public void rejectCandidate() {
+        rejectButton.click();
+        submitButton.click();
     }
 }
