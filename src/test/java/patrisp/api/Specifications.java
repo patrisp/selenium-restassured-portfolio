@@ -10,7 +10,7 @@ import patrisp.readProperties.ConfigProvider;
 import patrisp.tests.core.BaseTest;
 
 public class Specifications {
-    protected String URL = ConfigProvider.URL + "web/index.php";
+    public static String API_URL = ConfigProvider.URL + "web/index.php";
     public static RequestSpecification requestSpecification(String url, ContentType contentType) {
         RequestSpecBuilder builder = new RequestSpecBuilder();
         builder.setBaseUri(url)
@@ -19,7 +19,6 @@ public class Specifications {
         if (BaseTest.authCookieValue != null) {
             builder.addHeader("Cookie", "orangehrm=" + BaseTest.authCookieValue);
         }
-
         return builder.build();
     }
 

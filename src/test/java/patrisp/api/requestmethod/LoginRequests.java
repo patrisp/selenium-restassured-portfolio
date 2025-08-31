@@ -10,7 +10,7 @@ import static io.restassured.RestAssured.given;
 
 public class LoginRequests extends Specifications{
     public String getAuthCookie(String username, String password) {
-        Specifications.installSpecification(Specifications.requestSpecification(URL, ContentType.HTML), Specifications.responseSpecification(200));
+        Specifications.installSpecification(Specifications.requestSpecification(API_URL, ContentType.HTML), Specifications.responseSpecification(200));
         Response tokenResponse = given()
                 .when()
                 .get("/auth/login");
@@ -21,7 +21,7 @@ public class LoginRequests extends Specifications{
         token = token.substring(1, token.length() - 1);
         String cookie = tokenResponse.getCookie("orangehrm");
 
-        Specifications.installSpecification(Specifications.requestSpecification(URL, ContentType.URLENC), Specifications.responseSpecification(302));
+        Specifications.installSpecification(Specifications.requestSpecification(API_URL, ContentType.URLENC), Specifications.responseSpecification(302));
         Response authResponse = given()
                 .header("Cookie", "orangehrm=" + cookie)
                 .formParams(
