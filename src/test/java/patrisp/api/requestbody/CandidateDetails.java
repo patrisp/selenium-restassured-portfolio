@@ -1,6 +1,6 @@
 package patrisp.api.requestbody;
 
-import patrisp.testdata.CandidateData;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class CandidateDetails {
     private String firstName;
@@ -105,5 +105,16 @@ public class CandidateDetails {
 
     public Integer getVacancyId() {
         return vacancyId;
+    }
+
+    @JsonIgnore
+    public String getCandidateFullName() {
+        String fullName;
+        if (middleName == null) {
+            fullName = firstName + " " + lastName;
+        } else {
+            fullName = firstName + " " + middleName + " " + lastName;
+        }
+        return fullName;
     }
 }
