@@ -14,7 +14,6 @@ public class EmployeePersonalDetails {
     private String maritalStatus;
     private String birthday;
     private Integer nationalityId;
-    private String nickname;
     private Boolean smoker;
     private String militaryService;
 
@@ -30,9 +29,6 @@ public class EmployeePersonalDetails {
         this.maritalStatus = admin.maritalStatus;
         this.birthday = admin.birthday;
         this.nationalityId = admin.nationalityId;
-        this.nickname = admin.nickname;
-        this.smoker = admin.smoker;
-        this.militaryService = admin.militaryService;
     }
 
     public void setLastName(String lastName) {
@@ -79,15 +75,47 @@ public class EmployeePersonalDetails {
         this.nationalityId = nationalityId;
     }
 
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setSmoker(Boolean smoker) {
-        this.smoker = smoker;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setMilitaryService(String militaryService) {
-        this.militaryService = militaryService;
+    public String getMiddleName() {
+        return middleName;
+    }
+
+    public String getEmployeeId() {
+        return employeeId;
+    }
+
+    public String getOtherId() {
+        return otherId;
+    }
+
+    public String getDrivingLicenseNo() {
+        return drivingLicenseNo;
+    }
+
+    public String getDrivingLicenseExpiredDate() {
+        return drivingLicenseExpiredDate;
+    }
+
+    public Integer getGender() {
+        return gender;
+    }
+
+    public String getMaritalStatus() {
+        return maritalStatus;
+    }
+
+    public String getBirthday() {
+        return birthday;
+    }
+
+    public Integer getNationalityId() {
+        return nationalityId;
     }
 }
