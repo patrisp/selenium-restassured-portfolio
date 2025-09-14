@@ -9,7 +9,6 @@ import static io.restassured.RestAssured.given;
 
 public class EmployeesRequests extends Specifications {
     public void updateUserDetails(String userId, EmployeePersonalDetails employeeDetails) {
-        Specifications.installSpecification(Specifications.requestSpecification(URL, ContentType.JSON), Specifications.responseSpecification(200));
         Response response = given()
                 .body(employeeDetails)
                 .when()

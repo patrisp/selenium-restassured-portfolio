@@ -32,4 +32,8 @@ public class AdminData {
         this.smoker = false;
         this.militaryService = "Not a veteran";
     }
+
+    public String getAdminFullName() {
+        return firstName + " " + middleName + " " + lastName;
+    }
 }
