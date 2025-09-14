@@ -1,9 +1,11 @@
 package patrisp.tests.recruitment;
 
+import io.restassured.http.ContentType;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
+import patrisp.api.Specifications;
 import patrisp.api.requestbody.EmployeePersonalDetails;
 import patrisp.api.requestmethod.EmployeesRequests;
 import patrisp.pages.PageProvider;
@@ -16,6 +18,8 @@ import java.net.URISyntaxException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+import static patrisp.api.Specifications.API_URL;
+
 public class AddCandidateTest extends BaseTest {
     private PageProvider pages;
     private CandidateData candidate;
@@ -26,7 +30,7 @@ public class AddCandidateTest extends BaseTest {
     @BeforeMethod
     public void testSetUp() {
         pages = new PageProvider(driver);
-
+        Specifications.installSpecification(Specifications.requestSpecification(API_URL, ContentType.JSON), Specifications.responseSpecification(200));
         // Admin setup
         admin = new AdminData();
         EmployeesRequests request = new EmployeesRequests();
