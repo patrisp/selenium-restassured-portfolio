@@ -4,7 +4,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -12,9 +14,15 @@ import java.util.Locale;
 
 abstract public class AbstractComponent<T extends AbstractComponent<T>> {
     protected WebDriver driver;
+    protected WebDriverWait wait;
     // Side menu
     @FindBy(className = "oxd-main-menu-item")
     private List<WebElement> sideMenuOptions;
+    // User menu dropdown
+    @FindBy(className = "oxd-userdropdown")
+    private WebElement userDropdownButton;
+    @FindBy(xpath = "//a[@href=\"/web/index.php/auth/logout\"]")
+    private WebElement logOutButton;
     // Calendar modal
     @FindBy(className = "oxd-date-input")
     private WebElement calendarField;
@@ -54,6 +62,7 @@ abstract public class AbstractComponent<T extends AbstractComponent<T>> {
 
     public AbstractComponent(WebDriver driver) {
         this.driver = driver;
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         PageFactory.initElements(driver, this);
     }
 
@@ -88,14 +97,25 @@ abstract public class AbstractComponent<T extends AbstractComponent<T>> {
     }
 
     public String getToastMessageTitle() {
-        return toastMessageTitle.getText();
+        return wait.until(d -> {
+            String text = toastMessageTitle.getText();
+            return text != null && !text.trim().isEmpty() ? text : null;
+        });
     }
 
     public String getToastMessageContent() {
-        return toastMessageContent.getText();
+        return wait.until(d -> {
+            String text = toastMessageContent.getText();
+            return text != null && !text.trim().isEmpty() ? text : null;
+        });
     }
 
     public String getDateOfApplication() {
         return selectedDateField.getAttribute("value");
+    }
+
+    public void logout() {
+        userDropdownButton.click();
+        logOutButton.click();
     }
 }
