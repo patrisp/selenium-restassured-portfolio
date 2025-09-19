@@ -53,9 +53,16 @@ public class CandidatePage extends AbstractComponent<CandidatePage>{
     private List<WebElement> activityLogDateCell;
     @FindBy(xpath = "(//div[@class=\"oxd-table-card\"])//div[@role=\"cell\"][2]/div")
     private List<WebElement> activityLogActionCell;
-
     @FindBy(xpath = "//div[@class=\"orangehrm-recruitment-actions\"]/button[contains(@class, \"oxd-button--danger\")]")
     private WebElement rejectButton;
+    @FindBy(xpath = "//div[@class=\"orangehrm-recruitment-actions\"]/button[contains(@class, \"oxd-button--success\")]")
+    private List<WebElement> progressButtons;
+    @FindBy(xpath = "//label[contains(@class, \"oxd-input-field-required\")]/parent::div/following-sibling::div/input")
+    private WebElement interviewNameInput;
+    @FindBy(xpath = "//div[@class=\"oxd-autocomplete-wrapper\"]//input")
+    private WebElement interviewerNameInput;
+    @FindBy(xpath = "//div[@role=\"option\"]/span")
+    private List<WebElement> interviewerOptions;
 
     public CandidatePage(WebDriver driver) {
         super(driver);
@@ -187,5 +194,32 @@ public class CandidatePage extends AbstractComponent<CandidatePage>{
     public void rejectCandidate() {
         rejectButton.click();
         submitButton.click();
+    }
+
+    public CandidatePage proceedToNextStatus() {
+        if (progressButtons.size() > 1) {
+            progressButtons.get(1).click();
+        } else {
+            progressButtons.get(0).click();
+        }
+        return this;
+    }
+
+    public void saveChanges() {
+        submitButton.click();
+    }
+
+    public CandidatePage setInterviewName(String interviewName) {
+        interviewNameInput.sendKeys(interviewName);
+        return this;
+    }
+
+    public CandidatePage selectInterviewer(String interviewerName) {
+        interviewerNameInput.sendKeys(interviewerName);
+        interviewerOptions.stream()
+                .filter(option -> option.getText().contains(interviewerName))
+                .findFirst()
+                .ifPresent(WebElement::click);
+        return this;
     }
 }
