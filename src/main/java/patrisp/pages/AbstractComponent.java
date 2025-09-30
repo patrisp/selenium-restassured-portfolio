@@ -23,6 +23,9 @@ abstract public class AbstractComponent<T extends AbstractComponent<T>> {
     private WebElement userDropdownButton;
     @FindBy(xpath = "//a[@href=\"/web/index.php/auth/logout\"]")
     private WebElement logOutButton;
+    // Top navigation link
+    @FindBy(xpath = "//nav[@class=\"oxd-topbar-body-nav\"]/ul/li")
+    private List<WebElement> topNavigationLinks;
     // Calendar modal
     @FindBy(className = "oxd-date-input")
     private WebElement calendarField;
@@ -91,6 +94,15 @@ abstract public class AbstractComponent<T extends AbstractComponent<T>> {
     public T goToModule(String moduleName) {
         sideMenuOptions.stream()
                 .filter(option -> option.getText().equals(moduleName))
+                .findFirst()
+                .ifPresent(WebElement::click);
+        return (T) this;
+    }
+
+
+    public T goToTab(String tabName) {
+        topNavigationLinks.stream()
+                .filter(button -> button.getText().equals(tabName))
                 .findFirst()
                 .ifPresent(WebElement::click);
         return (T) this;
