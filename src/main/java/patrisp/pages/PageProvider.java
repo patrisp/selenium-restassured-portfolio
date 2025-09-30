@@ -3,7 +3,7 @@ package patrisp.pages;
 import org.openqa.selenium.WebDriver;
 
 public class PageProvider {
-    private WebDriver driver;
+    private final WebDriver driver;
 
     public PageProvider(WebDriver driver) {
         this.driver = driver;
@@ -23,6 +23,14 @@ public class PageProvider {
 
     public CandidatePage candidate() {
         return new CandidatePage(driver);
+    }
+
+    public ViewVacanciesPage viewVacancies() {
+        return new ViewVacanciesPage(driver);
+    }
+
+    public VacancyPage vacancy() {
+        return new VacancyPage(driver);
     }
 
 }
