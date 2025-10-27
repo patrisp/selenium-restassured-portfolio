@@ -33,4 +33,11 @@ public class PageProvider {
         return new VacancyPage(driver);
     }
 
+    public ViewEmployeesPage viewEmployees() {
+        return new ViewEmployeesPage(driver);
+    }
+
+    public EmployeePage employee() {
+        return new EmployeePage(driver);
+    }
 }
