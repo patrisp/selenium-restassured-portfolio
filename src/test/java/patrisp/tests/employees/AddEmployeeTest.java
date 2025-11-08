@@ -12,12 +12,16 @@ public class AddEmployeeTest extends BaseTest {
     @Test
     public void AddNewEmployee() throws URISyntaxException {
         PageProvider pages = new PageProvider(driver);
-        EmployeeData employee = new EmployeeData();
+        EmployeeData employee = EmployeeData.builder()
+                .firstName("Sarah")
+                .middleName("Caroline")
+                .lastName("Lewis")
+                .build();
         pages.dashboard().goToModule("PIM");
         pages.viewEmployees().openEmployeeCreationPage();
-        employee.setId(pages.employee().getId());
+        employee.setEmployeeId(pages.employee().getEmployeeId());
         pages.employee()
-                .addEmployeeFullName(employee.firstName, employee.middleName, employee.lastName)
+                .setEmployeeFullName(employee.getFirstName(), employee.getMiddleName(), employee.getLastName())
                 .addProfilePicture("test-data/employee-profile-picture.jpg")
                 .submitEmployee();
 
@@ -26,11 +30,11 @@ public class AddEmployeeTest extends BaseTest {
         softAssert.assertEquals(pages.employee().getToastMessageTitle(), "Success");
         softAssert.assertEquals(pages.employee().getToastMessageContent(), "Successfully Saved");
         // Employee name validation (header)
-        softAssert.assertEquals(pages.employee().getEmployeeHeaderName(), employee.firstName + " " + employee.lastName);
+        softAssert.assertEquals(pages.employee().getEmployeeHeaderName(), employee.getFirstName() + " " + employee.getLastName());
         // Employee name validation (input fields)
-        softAssert.assertEquals(pages.employee().getEmployeeFullName(), employee.firstName + " " + employee.middleName + " " + employee.lastName);
+        softAssert.assertEquals(pages.employee().getEmployeeFullName(), employee.getFirstName() + " " + employee.getMiddleName() + " " + employee.getLastName());
         // Employee ID validation
-        softAssert.assertEquals(pages.employee().getId(), employee.id);
+        softAssert.assertEquals(pages.employee().getEmployeeId(), employee.getEmployeeId());
         // Employee profile picture validation
         softAssert.assertEquals(pages.employee().getProfilePictureWidth(), 124);
         softAssert.assertEquals(pages.employee().getProfilePictureHeight(), 104);
