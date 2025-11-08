@@ -3,6 +3,7 @@ package patrisp.api.requestmethod;
 import io.restassured.response.Response;
 import patrisp.api.Specifications;
 import patrisp.api.requestbody.EmployeePersonalDetails;
+import patrisp.api.requestbody.employee.AddEmployeeRequestBody;
 
 import static io.restassured.RestAssured.given;
 
@@ -24,10 +25,9 @@ public class EmployeesRequests extends Specifications {
         return response.jsonPath().getBoolean("data.valid");
     }
 
-    public int createNewEmployee(EmployeePersonalDetails employeeDetails) {
+    public int createNewEmployee(AddEmployeeRequestBody employeeDetails) {
         Response response = given()
                 .body(employeeDetails)
-                .log().all()
                 .when()
                 .post("/api/v2/pim/employees")
                 .then()
