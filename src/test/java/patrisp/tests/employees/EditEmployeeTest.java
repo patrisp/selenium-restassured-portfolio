@@ -73,6 +73,7 @@ private static final String DATE_FORMAT = "yyyy-dd-MM";
         pages.employee()
                 .setEmployeeFullName(newEmployeeDetails.getFirstName(), newEmployeeDetails.getMiddleName(), newEmployeeDetails.getLastName())
                 .setEmployeeId(newEmployeeDetails.getEmployeeId())
+                .setOtherId(newEmployeeDetails.getOtherId())
                 .setDriversLicenceNumber(newEmployeeDetails.getDriverLicenseNumber())
                 .setDriversLicenceExpiryDate(newEmployeeDetails.getDriverLicenseExpiryDate())
                 .selectNationality(newEmployeeDetails.getNationality())
