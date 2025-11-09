@@ -1,6 +1,7 @@
 package patrisp.pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -60,11 +61,14 @@ public class EmployeePage extends AbstractComponent<EmployeePage>{
     }
 
     public EmployeePage setEmployeeFullName(String firstName, String middleName, String lastName) {
-        firstNameField.clear();
+        firstNameField.sendKeys(Keys.CONTROL + "a");
+        firstNameField.sendKeys(Keys.DELETE);
         firstNameField.sendKeys(firstName);
-        middleNameField.clear();
+        middleNameField.sendKeys(Keys.CONTROL + "a");
+        middleNameField.sendKeys(Keys.DELETE);
         middleNameField.sendKeys(middleName);
-        lastNameField.clear();
+        lastNameField.sendKeys(Keys.CONTROL + "a");
+        lastNameField.sendKeys(Keys.DELETE);
         lastNameField.sendKeys(lastName);
         return this;
     }
@@ -174,7 +178,7 @@ public class EmployeePage extends AbstractComponent<EmployeePage>{
     }
 
     public String getGender() {
-        String genderId = driver.findElement(By.cssSelector("input[type='checkbox']:checked")).getAttribute("value");
+        String genderId = driver.findElement(By.cssSelector("input[type='radio']:checked")).getAttribute("value");
         String gender = null;
         if (genderId.equals("1")) {
             gender = "male";
