@@ -58,7 +58,7 @@ public class AddCandidateTest extends BaseTest {
                 .addKeywords(candidate.keywords)
                 .uploadResume("test-data/" + candidate.resumeName)
                 .addNotes(candidate.notes)
-                .selectDate(candidate.applicationDate)
+                .setInterviewDate(candidate.applicationDate)
                 .allowDataConsent()
                 .submitCandidate();
 

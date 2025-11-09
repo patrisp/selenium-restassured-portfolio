@@ -144,7 +144,7 @@ public class UpdateCandidateStatusTest extends BaseTest {
                     .proceedToNextStatus()
                     .setInterviewName(INTERVIEW_NAME)
                     .selectInterviewer(admin.getAdminFullName())
-                    .selectDate(INTERVIEW_DATE)
+                    .setInterviewDate(INTERVIEW_DATE)
                     .saveChanges();
         } else {
             pages.candidate()

@@ -1,24 +1,23 @@
-package patrisp.testdata;
-
+package patrisp.api.requestbody.employee;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@Builder
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
-public class EmployeeData {
+public class EditEmployeeRequestBody  {
     private String firstName;
-    private String middleName;
     private String lastName;
+    private String middleName;
     private String employeeId;
     private String otherId;
-    private String driverLicenseNumber;
-    private String driverLicenseExpiryDate;
-    private String nationality;
+    private String drivingLicenseNo;
+    private String drivingLicenseExpiredDate;
+    private Integer gender;
     private String maritalStatus;
-    private String dateOfBirth;
-    private String gender;
+    private String birthday;
+    private Integer nationalityId;
 }

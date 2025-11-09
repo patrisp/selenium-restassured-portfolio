@@ -14,10 +14,9 @@ public class EmployeePersonalDetails {
     private String maritalStatus;
     private String birthday;
     private Integer nationalityId;
-    private Boolean smoker;
-    private String militaryService;
+    private String empPicture;
 
-    public EmployeePersonalDetails(AdminData admin) {
+    public EmployeePersonalDetails (AdminData admin) {
         this.lastName = admin.lastName;
         this.firstName = admin.firstName;
         this.middleName = admin.middleName;
@@ -29,6 +28,14 @@ public class EmployeePersonalDetails {
         this.maritalStatus = admin.maritalStatus;
         this.birthday = admin.birthday;
         this.nationalityId = admin.nationalityId;
+    }
+
+    public EmployeePersonalDetails (String firstName, String middleName, String lastName, String employeeId, String empPicture) {
+        this.firstName = firstName;
+        this.middleName = middleName;
+        this.lastName = lastName;
+        this.employeeId = employeeId;
+        this.empPicture = empPicture;
     }
 
     public void setLastName(String lastName) {

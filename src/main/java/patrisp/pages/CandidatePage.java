@@ -63,6 +63,8 @@ public class CandidatePage extends AbstractComponent<CandidatePage>{
     private WebElement interviewerNameInput;
     @FindBy(xpath = "//div[@role=\"option\"]/span")
     private List<WebElement> interviewerOptions;
+    @FindBy(xpath = "//div[@class=\"oxd-date-input\"]/input")
+    private WebElement interviewDateInput;
 
     public CandidatePage(WebDriver driver) {
         super(driver);
@@ -211,6 +213,11 @@ public class CandidatePage extends AbstractComponent<CandidatePage>{
 
     public CandidatePage setInterviewName(String interviewName) {
         interviewNameInput.sendKeys(interviewName);
+        return this;
+    }
+
+    public CandidatePage setInterviewDate(String date) {
+        selectDate(interviewDateInput, date);
         return this;
     }
 

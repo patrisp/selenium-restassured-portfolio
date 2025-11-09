@@ -69,13 +69,13 @@ abstract public class AbstractComponent<T extends AbstractComponent<T>> {
         PageFactory.initElements(driver, this);
     }
 
-    public T selectDate(String isoDate) {
+    public T selectDate(WebElement dateField, String isoDate) {
         LocalDate parsed = LocalDate.parse(isoDate, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         String year = String.valueOf(parsed.getYear());
         String month = parsed.format(DateTimeFormatter.ofPattern("MMMM", Locale.ENGLISH));
         String day = String.valueOf(parsed.getDayOfMonth());
 
-        calendarField.click();
+        dateField.click();
         calendarCurrentYear.click();
         dropdownList.stream()
                 .filter(option -> option.getText().contains(year))
