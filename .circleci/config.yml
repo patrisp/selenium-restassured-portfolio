@@ -19,7 +19,7 @@ jobs:
       module:
         type: string
     docker:
-      - image: cimg/openjdk:17.0-browsers
+      - image: cimg/openjdk:18.0-browsers
     steps:
       - checkout
       - run:
