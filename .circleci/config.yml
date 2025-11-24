@@ -22,6 +22,8 @@ jobs:
       - image: cimg/openjdk:18.0
     steps:
       - checkout
+      - run: java -version
+      - run: javac -version
       - run:
           name: Run tests for module
           command: mvn -Dtest=patrisp.tests.<< parameters.module >>.** test
