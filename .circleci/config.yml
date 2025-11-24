@@ -24,7 +24,7 @@ jobs:
       - checkout
       - run:
           name: Run tests for module
-          command: mvn -Dtest=**/<< parameters.module >>/** test
+          command: mvn -Dtest=patrisp.tests.<< parameters.module >>.** test
 
 workflows:
   employees_tests:
