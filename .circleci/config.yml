@@ -3,7 +3,7 @@
 version: 2.1
 
 orbs:
-maven: circleci/maven@2.2.0
+  maven: circleci/maven@2.2.0
 
 jobs:
   run-tests:
@@ -13,27 +13,18 @@ jobs:
     steps:
       - checkout
       - run:
-        name: Install Dependencies
-        command: mvn -B dependency:resolve
+          name: Install Dependencies
+          command: mvn -B dependency:resolve
       - run:
-        name: Setup ChromeDriver
-        command: |
-          sudo apt-get update
-          sudo apt-get install -y chromium-chromedriver
+          name: Setup ChromeDriver
+          command: |
+            sudo apt-get update
+            sudo apt-get install -y chromium-chromedriver
       - run:
-    name: Run Selenium Tests
-    command: mvn -B -Dtest=*patrisp/tests/* test
+          name: Run Selenium Tests
+          command: mvn -B test
 
 workflows:
   test_workflow:
-    triggers:
-      - schedule:
-        cron: "0 0 * * *"
-        filters:
-          branches:
-            only: main
     jobs:
-      - run-tests:
-        filters:
-          branches:
-            only: main
+      - run-tests
